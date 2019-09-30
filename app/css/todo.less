@@ -1,0 +1,49 @@
+﻿body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+
+    .new-task {
+        margin-top: 20px;
+        margin-bottom: 10px;
+
+        > input {
+            width: calc(~"100% - 55px");
+        }
+    }
+
+    .remaining-tasks {
+        > button {
+            float: right;
+        }
+    }
+
+    .task-list {
+        > ul {
+            list-style: none;
+
+            > li {
+                margin: 2px 0 2px 0;
+            }
+        }
+
+        .pending {
+            color: green;
+        }
+
+        .done {
+            text-decoration: line-through;
+            color: indianred;
+        }
+
+        .done-status {
+            font-size: 0.6em;
+            color: dimgray;
+            text-decoration: none;
+        }
+    }
+}

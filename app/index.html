@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>My Todo list</title>
+    <link href="css/todo.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <form name="newTask" class="new-task">
+            <input type="text" name="newTodoText" />
+            <button>add</button>
+        </form>
+        <div class="remaining-tasks">
+            <span>Total: 0 - Remaining: 0</span>
+            <button>remove done</button>
+        </div>
+        <div class="task-list">
+            <ul>
+                <li>
+                    <input type="checkbox" />
+                    <span>Task 1</span>
+                    <span class="pending">is done?: false</span>
+                </li>
+                <li>
+                    <input type="checkbox" />
+                    <span>Task 2</span>
+                    <span class="done">is done?: true</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
