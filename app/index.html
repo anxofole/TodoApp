@@ -4,30 +4,30 @@
     <title>My Todo list</title>
     <link href="css/todo.css" rel="stylesheet" />
 </head>
-<body>
-    <div class="container">
-        <form name="newTask" class="new-task">
-            <input type="text" name="newTodoText" />
-            <button>add</button>
+<body ng-app="todoApp">
+    <div class="container" ng-controller="TodoCtrl as ctrl">
+        <form name="newTask" class="new-task" novalidate>
+            <input type="text" name="newTodoText" ng-model="ctrl.newTodoText" />
+            <button ng-click="ctrl.addNewTodo()" ng-disabled="ctrl.newTodoText.length === 0">add</button>
         </form>
         <div class="remaining-tasks">
-            <span>Total: 0 - Remaining: 0</span>
-            <button>remove done</button>
+            <span>Total: {{ctrl.todos.length}} - Remaining: {{ctrl.remaining}}</span>
+            <button ng-click="ctrl.removeDoneTodos()" ng-disabled="(ctrl.todos.length - ctrl.remaining) === 0">remove
+                done</button>
         </div>
         <div class="task-list">
             <ul>
-                <li>
-                    <input type="checkbox" />
-                    <span>Task 1</span>
-                    <span class="pending">is done?: false</span>
-                </li>
-                <li>
-                    <input type="checkbox" />
-                    <span>Task 2</span>
-                    <span class="done">is done?: true</span>
+                <li ng-repeat="todo in ctrl.todos" ng-cloak>
+                    <input type="checkbox" ng-model="todo.done" ng-change="ctrl.updateRemaining(todo)" />
+                    <span ng-class="{pending: !todo.done, done: todo.done}">{{todo.text}}</span>
+                    <span class="done-status">is done?: {{todo.done}}</span>
                 </li>
             </ul>
         </div>
     </div>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="components/TodoCtrl.js"></script>
 </body>
 </html>
