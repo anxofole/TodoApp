@@ -1,0 +1,19 @@
+﻿<div class="container">
+    <form name="newTask" class="new-task" novalidate>
+        <input type="text" name="newTodoText" ng-model="$ctrl.newTodoText" />
+        <button ng-click="$ctrl.addNewTodo()" ng-disabled="$ctrl.newTodoText.length === 0">add</button>
+    </form>
+    <div class="remaining-tasks">
+        <span>Total: {{$ctrl.todos.length}} - Remaining: {{$ctrl.remaining}}</span>
+        <button ng-click="$ctrl.removeDoneTodos()" ng-disabled="($ctrl.todos.length - $ctrl.remaining) === 0">remove done</button>
+    </div>
+    <div class="task-list">
+        <ul>
+            <li ng-repeat="todo in $ctrl.todos" ng-cloak>
+                <input type="checkbox" ng-model="todo.done" ng-change="$ctrl.updateRemaining(todo)" />
+                <span ng-class="{pending: !todo.done, done: todo.done}">{{todo.text}}</span>
+                <span class="done-status">is done?: {{todo.done}}</span>
+            </li>
+        </ul>
+    </div>
+</div>
