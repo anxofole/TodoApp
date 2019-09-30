@@ -2,7 +2,7 @@
 
     'use strict';
 
-    function ListController() {
+    function ListController(todoService) {
 
         var vm = this;
 
@@ -11,25 +11,18 @@
         function $onInit() {
             vm.newTodoText = '';
             vm.remaining = 0;
-            vm.todos = [];
+            vm.todos = todoService.getAll();
         }
 
-        var Todo = function (text) {
-            this.text = text;
-            this.done = false;
-        };
 
         vm.addNewTodo = function () {
-            var newTodo = new Todo(vm.newTodoText);
-            vm.todos.push(newTodo);
+            todoService.add(vm.newTodoText);
             vm.remaining++;
             vm.newTodoText = '';
         };
 
         vm.removeDoneTodos = function () {
-            vm.todos = vm.todos.filter(function (todo) {
-                return todo.done !== true;
-            });
+            todoService.removeDoneTodos();
         };
 
         vm.updateRemaining = function (todo) {
@@ -42,7 +35,7 @@
 
     }
 
-    ListController.$inject = [];
+    ListController.$inject = ['todoService'];
 
     angular.module('todoApp')
         .component('list', {
