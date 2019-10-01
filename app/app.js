@@ -1,16 +1,16 @@
 (function () {
-      'use strict';
-  
-      function routingConfiguration($locationProvider, $routeProvider) {
-        $locationProvider.hashPrefix('');
-      };
-  
-      routingConfiguration.$inject = ['$locationProvider', '$routeProvider'];
-  
-      angular
-      .module('todoApp', [
-        'ngRoute'
-      ]).
-      config(routingConfiguration);
-  
-  })();
+  'use strict';
+
+  function routingConfiguration($locationProvider) {
+    $locationProvider.hashPrefix('');
+  };
+
+  routingConfiguration.$inject = ['$locationProvider'];
+
+  angular
+    .module('todoApp', [
+      'ui.router'
+    ])
+    .config(routingConfiguration)
+
+})();
