@@ -27,7 +27,7 @@ namespace TodosAPI
 
             string origin = "http://localhost:8000";
 
-            EnableCorsAttribute cors = new EnableCorsAttribute(origin, "*", "GET,POST");
+            EnableCorsAttribute cors = new EnableCorsAttribute(origin, "*", "GET,POST,PUT");
 
             config.EnableCors(cors);
         }
