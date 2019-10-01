@@ -1,7 +1,4 @@
 (function () {
-    'use strict';
-
-    (function () {
       'use strict';
   
       function routingConfiguration($locationProvider, $routeProvider) {
@@ -17,5 +14,3 @@
       config(routingConfiguration);
   
   })();
-
-})();

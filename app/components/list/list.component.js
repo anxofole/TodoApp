@@ -40,7 +40,7 @@
     angular.module('todoApp')
         .component('list', {
             controller: ListController,
-            templateUrl: './components/list/list.component.html'
+            templateUrl: './components/list/list.template.html'
         });
 
 }());
