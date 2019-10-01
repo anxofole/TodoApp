@@ -11,7 +11,7 @@
         <ul>
             <li ng-repeat="todo in $ctrl.todos" ng-cloak>
                 <input type="checkbox" ng-model="todo.done" ng-change="$ctrl.updateRemaining(todo)" />
-                <span ng-class="{pending: !todo.done, done: todo.done}">{{todo.text}}</span>
+                <span ui-sref="detail({id : todo.id})" ng-class="{pending: !todo.done, done: todo.done}">{{todo.text}}</span>
                 <span class="done-status">is done?: {{todo.done}}</span>
             </li>
         </ul>

@@ -1,0 +1,19 @@
+﻿<div>
+    <div ng-if="!$ctrl.todo">
+        Todo not found!
+    </div>
+    <div ng-if="$ctrl.todo">
+        <h3 class="detail-header">{{$ctrl.todo.text}}</h3>
+        <div ng-switch="$ctrl.todo.done">
+            <div ng-switch-when="true">
+                <div>You have finished this task!</div>
+            </div>
+            <div ng-switch-when="false">
+                <div>This task is not finished</div>
+            </div>
+        </div>
+    </div>
+    <div class="detail-footer">
+        <a ui-sref="list"> Back to list</a>
+    </div>
+</div>

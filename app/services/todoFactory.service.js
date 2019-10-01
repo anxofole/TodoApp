@@ -4,10 +4,12 @@
     function TodoService () {
 
         var todos = [];
+        var currentId = 0;
 
         var Todo = function (text) {
             this.text = text;
             this.done = false;
+            this.id = currentId++;
         };
 
         function getAll() {
@@ -28,14 +30,24 @@
             }
         }
 
+        function getById(id){
+            for (var i = 0; i < todos.length; i++) {
+                if (todos[i].id === id) {
+                    return todos[i];
+                }
+            }
+
+            return null;
+        }
+
         return {
             add: add,
             getAll: getAll,
-            removeDoneTodos: removeDoneTodos
+            removeDoneTodos: removeDoneTodos,
+            getById: getById
         }
 
     }
-
 
     angular
         .module('todoApp')

@@ -5,12 +5,28 @@
     $locationProvider.hashPrefix('');
   };
 
+  function statesConfiguration($stateProvider,$urlRouterProvider) {
+    $stateProvider
+      .state('list', {
+        url: '/list',
+        template: '<list></list>'
+      })
+      .state('detail', {
+        url: '/detail/:id',
+        template: '<detail></detail>'
+      });
+
+     $urlRouterProvider.otherwise('/list');
+  }
+
   routingConfiguration.$inject = ['$locationProvider'];
+  statesConfiguration.$inject = ['$stateProvider','$urlRouterProvider'];
 
   angular
     .module('todoApp', [
       'ui.router'
     ])
-    .config(routingConfiguration)
+    .config(routingConfiguration)    
+    .config(statesConfiguration)
 
 })();
