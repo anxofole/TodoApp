@@ -11,26 +11,58 @@
         function $onInit() {
             vm.newTodoText = '';
             vm.remaining = 0;
-            vm.todos = todoService.getAll();
+            vm.todos = [];
+            todoService.getAll().then(function(result){
+                vm.todos = result.data;
+                vm.remaining = 0;
+                for (var i = 0; i < vm.todos.length; i++) {
+                    if (vm.todos[i].done == false) {
+                        vm.remaining++;
+                    }
+                }
+            },
+            function() {
+                // Show error
+            });       
         }
 
 
         vm.addNewTodo = function () {
-            todoService.add(vm.newTodoText);
-            vm.remaining++;
-            vm.newTodoText = '';
+            todoService.add(vm.newTodoText).then(
+                function (result) {
+                    vm.todos.push(result.data);
+                    vm.remaining++;
+                    vm.newTodoText = '';
+                },
+                function() {
+                    // Show error
+                });
         };
 
         vm.removeDoneTodos = function () {
-            todoService.removeDoneTodos();
+            todoService.removeDoneTodos().then(
+                function () {
+                    vm.todos = vm.todos.filter(function (todo) {
+                        return todo.done !== true;
+                    });
+                },
+                function() {
+                    // Show error
+                });  
         };
 
         vm.updateRemaining = function (todo) {
-            if (todo.done) {
-                vm.remaining--;
-            } else {
-                vm.remaining++;
-            }
+            todoService.switchDone(todo).then(
+                function(result) {
+                    if (todo.done) {
+                        vm.remaining--;
+                    } else {
+                        vm.remaining++;
+                    }
+                },
+                function() {
+                    // Show error
+                });
         };
 
     }

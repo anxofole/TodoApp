@@ -1,11 +1,11 @@
 (function (){
     'use strict';
 
-    function TodoService () {
+    function TodoService ($http) {
 
-        var todos = [];
         var currentId = 0;
 
+        var baseUrl = 'http://localhost:51228/';
         var Todo = function (text) {
             this.text = text;
             this.done = false;
@@ -13,41 +13,70 @@
         };
 
         function getAll() {
-            return todos;
+            return $http({
+                method: 'GET',
+                url: baseUrl + 'api/todos',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+        }
+
+        function getById(todoId) {
+            return $http({
+                method: 'GET',
+                url: baseUrl + 'api/todos/' + todoId,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
         }
 
         function add(newTodoText){
             var newTodo = new Todo(newTodoText);
-            todos.push(newTodo);
+            return $http({
+                method: 'POST',
+                url: baseUrl + 'api/todos',
+                data: newTodo,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+        }
+
+        function switchDone(todo) {
+
+            return $http({
+                method: 'PUT',
+                url: baseUrl + 'api/todos/' + todo.id,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
         }
 
         function removeDoneTodos() {
 
-            for (var i = todos.length - 1 ; i >= 0; i--) {
-                if (todos[i].done) {
-                    todos.splice(i, 1);
+            return $http({
+                method: 'POST',
+                url: baseUrl + 'api/todos/removedone',
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-            }
-        }
-
-        function getById(id){
-            for (var i = 0; i < todos.length; i++) {
-                if (todos[i].id === id) {
-                    return todos[i];
-                }
-            }
-
-            return null;
+            });
         }
 
         return {
             add: add,
             getAll: getAll,
-            removeDoneTodos: removeDoneTodos,
-            getById: getById
+            getById: getById,
+            switchDone: switchDone,
+            removeDoneTodos: removeDoneTodos
         }
 
     }
+
+    TodoService.$inject = ['$http'];
 
     angular
         .module('todoApp')

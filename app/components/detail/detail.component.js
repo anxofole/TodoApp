@@ -10,7 +10,9 @@
 
         function $onInit() {
             vm.todoId = parseInt($stateParams.id);
-            vm.todo = todoService.getById(vm.todoId);
+            todoService.getById(vm.todoId).then(function(result) {
+                vm.todo = result.data;
+            })
         }
 
 
