@@ -5,11 +5,11 @@
     function RegisterController() {
 
         var vm = this;
+        vm.passwordPattern =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\D)[a-zA-Z\d\D]{8,}$/;
 
         vm.$onInit = $onInit;
 
         function $onInit() {
-            vm.passwordPattern =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\D)[a-zA-Z\d\D]{8,}$/;
             vm.countries = [ { code: 'es', name: 'España'},{ code: 'fr', name: 'Francia'}, { code: 'pt', name: 'Portugal'} ];
         }
 
