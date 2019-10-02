@@ -14,6 +14,10 @@
       .state('detail', {
         url: '/detail/:id',
         template: '<detail></detail>'
+      })
+      .state('register', {
+        url: '/register',
+        template: '<register></register>'
       });
 
      $urlRouterProvider.otherwise('/list');
