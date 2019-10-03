@@ -59,6 +59,21 @@
                 <div ng-message="required"><span>Requerido</span></div>
             </div>
         </div>
+        <div class="form-group">
+            <input type="text"
+                   class="register-input"
+                   ng-class="{ 'error-message' : registerForm.dni.$invalid, 'valid' : registerForm.dni.$valid }"
+                   id="dni"
+                   name="dni"
+                   ng-model="$ctrl.user.dni"
+                   placeholder="dni"
+                   dni-validator
+                   required>
+            <div ng-messages="registerForm.dni.$error" ng-show="registerForm.dni.$invalid" class="error-message" role="alert">
+                <div ng-message="pattern"><span>El dni no es valido</span></div>
+                <div ng-message="required"><span>Requerido</span></div>
+            </div>
+        </div>
         <button type="submit" ng-disabled="registerForm.$invalid" >REGISTER</button>
     </form>
 </div>
