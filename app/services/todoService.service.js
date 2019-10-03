@@ -32,6 +32,6 @@
 
     angular
         .module('todoApp')
-        .service('todoService', TodoService);
+        .service('todoServiceService', TodoService);
 
 })();
