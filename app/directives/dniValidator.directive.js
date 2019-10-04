@@ -20,7 +20,7 @@
 
             var dniPattern = /^\d{8}[a-zA-Z]$/;
 
-            ngModel.$validators.odd = function (value) {
+            ngModel.$validators.dni = function (value) {
                 return value.match(dniPattern);
             };
             // scope.$watch(attrs.ngModel,

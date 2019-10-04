@@ -28,7 +28,8 @@
 
   angular
     .module('todoApp', [
-      'ui.router'
+      'ui.router',
+      'ngMessages'
     ])
     .config(routingConfiguration)    
     .config(statesConfiguration)
